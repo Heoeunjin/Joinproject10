@@ -11,7 +11,7 @@ export default function SignIn() {
     const idRef = useRef(null);
     const passwordRef = useRef(null);
 
-    const [cookie, setCookie] = useCookies();
+    const [cookie, setCookie] = useCookies(['accessToken']);
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -21,19 +21,30 @@ export default function SignIn() {
     const signInResponse = (response) => {
         if (!response) return;
         const { code, data } = response;
-        if (code === ResponseCode.VALIDATION_FAIL) alert('아이디와 비밀번호를 입력하세요.');
-        if (code === ResponseCode.SIGN_IN_FAIL) setMessage('로그인 정보가 일치하지 않습니다.');
-        if (code === ResponseCode.DATABASE_ERROR) alert('데이터베이스 오류입니다.');
-        if (code !== ResponseCode.SUCCESS) return;
 
-        const { token, expirationTime } = data;
-        const now = new Date().getTime();
-        const expires = new Date(now + expirationTime);
+        if (code === ResponseCode.VALIDATION_FAIL) {
+            alert('아이디와 비밀번호를 입력하세요.');
+            return;
+        }
 
-        setCookie('accessToken', token, { expires, path: '/' });
+        if (code === ResponseCode.SIGN_IN_FAIL) {
+            setMessage('로그인 정보가 일치하지 않습니다.');
+            return;
+        }
 
-        alert('로그인 성공했습니다!');
-        navigate('/index');
+        if (code === ResponseCode.DATABASE_ERROR) {
+            alert('데이터베이스 오류입니다.');
+            return;
+        }
+
+        if (code === ResponseCode.SUCCESS) {
+            const { token, expirationTime } = data;
+            const now = new Date().getTime();
+            const expires = new Date(now + expirationTime);
+            setCookie('accessToken', token, { expires, path: '/' });
+            alert('로그인 성공했습니다!');
+            navigate('/index');
+        }
     };
 
     const onIdChangeHandler = (event) => {
@@ -81,7 +92,7 @@ export default function SignIn() {
                     <div className='sign-in-content-box'>
                         <div className='sign-in-content-input-box'>
                             <InputBox ref={idRef} title='아이디' placeholder='아이디를 입력해주세요' type='text' value={id} onChange={onIdChangeHandler} onKeyDown={onIdKeyDownHandler} />
-                            <InputBox ref={passwordRef} title='비밀번호' placeholder='비밀번호를 입력해주세요' type='password' value={password} onChange={onPasswordChangeHandler} isErrorMessage message={message} onKeyDown={onPasswordKeyDownHandler} />
+                            <InputBox ref={passwordRef} title='비밀번호' placeholder='비밀번호를 입력해주세요' type='password' value={password} onChange={onPasswordChangeHandler} isErrorMessage={!!message} message={message} onKeyDown={onPasswordKeyDownHandler} />
                         </div>
                         <div className='sign-in-content-button-box'>
                             <div className='primary-button-lg full-width' onClick={onSignInButtonClickHandler}>{'로그인'}</div>

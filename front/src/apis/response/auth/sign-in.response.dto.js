@@ -1,12 +1,3 @@
-//import ResponseDto from '../response.dto';
-//
-//export default interface SignInResponseDto extends ResponseDto {
-//
-//    token: string;
-//    expirationTime: number;
-//
-//}
-
 import ResponseDto from '../response.dto';
 
 class SignInResponseDto extends ResponseDto {

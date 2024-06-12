@@ -1,3 +1,4 @@
+// index.js (src/views/Main/index.js)
 import React, { useState } from 'react';
 import './index.css';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +8,10 @@ import Todo from "../TodoPage/Todo";
 import Diary from "../DiaryPage/DiaryApp";
 import { publicUrl } from '../../util';
 import Sidebar from '../../components/Layout/Sidebar';
-
+import feedImage1 from './images/feed1.jpg'; // 이미지 상대 경로 임포트
+import feedImage2 from './images/feed2.jpg'; // 이미지 상대 경로 임포트
+import feedImage3 from './images/feed3.jpg'; // 이미지 상대 경로 임포트
+import feedImage4 from './images/feed4.jpg'; // 이미지 상대 경로 임포트
 
 const App = () => {
     const [previousButton, setPreviousButton] = useState(null);
@@ -24,7 +28,7 @@ const App = () => {
         }
         setShowGame(path === '/game');
         setShowTodo(path === '/todo');
-        setShowTodo(path === '/Diary');
+        setShowDiary(path === '/Diary');
         setShowGuestBook(path === '/guestBook');
         navigate(path);
         button.classList.add('clicked');
@@ -56,9 +60,8 @@ const App = () => {
     return (
         <section>
             <article>
-                {/*<h2>Latest News</h2>
-                <p>This is some interesting content about the latest news in my world.</p>*/}
-                <h1>미니룸</h1>
+                <div className="profile-text">프로필</div>
+                <div className="miniroom-text">미니룸</div>
             </article>
 
             {/* 우측 버튼 */}
@@ -81,21 +84,33 @@ const App = () => {
             <button className="profileBox" onClick={openFilePicker}>
                 {profileImage ? <img src={profileImage} alt="Profile" /> : '프로필 수정'}
             </button>
+
             <input type="file" id="fileInput" style={{ display: 'none' }} accept="image/*" onChange={handleFileChange} />
-            <div className="storyBox"></div>
-            <div className="feedBox1"></div>
-            <div className="feedBox2"></div>
-            <div className="feedBox3"></div>
-            <div className="feedBox4"></div>
+            <div className="storyBox">
+                id: h1<br/><br/>
+                이름: 허은진<br/><br/>
+                이메일: huhej0315@gmail.com
+            </div>
+            <div className="feedBox1">
+                <img src={feedImage1} alt="Feed Image" /> {/* 이미지 경로 수정 */}
+            </div>
+            <div className="feedBox2">
+                <img src={feedImage2} alt="Feed Image" /> {/* 이미지 경로 수정 */}
+            </div>
+            <div className="feedBox3">
+                <img src={feedImage3} alt="Feed Image" /> {/* 이미지 경로 수정 */}
 
+            </div>
+            <div className="feedBox4">
+                <img src={feedImage4} alt="Feed Image" />
+            </div>
             <div className="backgroundBox1">
-
                 <div>
                     <img className="miniroom"
-                        src={publicUrl + '/resources/img/miniroom.gif'}
-                        alt="miniroom"
+                         src={publicUrl + '/resources/img/miniroom.gif'}
+                         alt="miniroom"
                     />
-            </div> {/* 클래스 이름 수정 */}
+                </div> {/* 클래스 이름 수정 */}
             </div>
             {/* 방명록 요소 */}
             {showGuestBook && <GuestBook />}
@@ -105,8 +120,6 @@ const App = () => {
             {showDiary && <Diary />}
             {/* 게임 요소 */}
             {showGame && <Game />}
-
-
         </section>
     );
 };

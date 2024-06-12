@@ -4,9 +4,6 @@
 //    password: string;
 //
 //}
-
-
-
 class SignInRequestDto {
   constructor(data) {
     this.id = data.id;

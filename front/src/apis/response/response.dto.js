@@ -1,8 +1,3 @@
-//export default interface ResponseDto {
-//    code: ResponseCode;
-//    message: ResponseMessage;
-//}
-
 class ResponseDto {
     constructor(code, message) {
         this.code = code;
@@ -11,3 +6,4 @@ class ResponseDto {
 }
 
 export default ResponseDto;
+ 
