@@ -29,7 +29,7 @@ article {
 
 /* 음악 추천 */
 .musicBox {
-    position: absolute;
+    position: fixed;
     top: 150px;
     right: 150px;
     background-color: #f5f2ff;
@@ -77,8 +77,8 @@ article {
     top: 180px; /* 원하는 위치로 조정 */
     left: 250px;
     background-color: #ded8e8;
-    width: 200px; /* 프로필 상자의 너비를 조정 */
-    height: 200px; /* 프로필 상자의 높이를 조정 */
+    width: 180px; /* 프로필 상자의 너비를 조정 */
+    height: 180px; /* 프로필 상자의 높이를 조정 */
     cursor: pointer;
     z-index: 0;
     border-radius: 5px;
@@ -102,56 +102,31 @@ article {
     top: 630px;
     left: 250px;
     background-color: #ded8e8;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
 }
-.feedBox1 img {
-    max-width: 100%;
-    max-height: 170%;
-    object-fit: cover; /* 이미지가 박스 크기에 맞게 조정되도록 설정 */
-}
+
 /* 피드2 */
 .feedBox2 {
     position: absolute;
     top: 630px;
     left: 500px;
     background-color: #ded8e8;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
 }
-.feedBox2 img {
-    max-width: 200%;
-    max-height: 200%;
-    object-fit: cover; /* 이미지가 박스 크기에 맞게 조정되도록 설정 */
-}
+
 /* 피드3 */
 .feedBox3 {
     position: absolute;
     top: 630px;
     left: 750px;
     background-color: #ded8e8;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-.feedBox3 img {
-    max-width: 130%;
-    max-height: 170%;
-    object-fit: cover; /* 이미지가 박스 크기에 맞게 조정되도록 설정 */
 }
 
 /* 피드4 */
@@ -160,62 +135,37 @@ article {
     top: 630px;
     left: 1000px;
     background-color: #ded8e8;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-.feedBox4 img {
-    max-width: 150%;
-    max-height: 100%;
-    object-fit: cover; /* 이미지가 박스 크기에 맞게 조정되도록 설정 */
 }
 
 /* 스토리 */
 .storyBox {
     position: absolute;
-    top: 370px; /* 원하는 위치로 조정 */
+    top: 500px; /* 원하는 위치로 조정 */
     /* margin-right: 100px; article의 오른쪽에 위치하도록 설정 */
     left: 250px;
+    background-color: #ded8e8;
     width: 180px;
+    height: 100px;
     border-radius: 5px;
-    font-family: 'CustomFont', sans-serif;
-    font-weight: bolder;
-    font-size: 16px;
-    color: #3d3d3d;
 }
 
-/* 미니룸 */
+/* 배경 */
 .backgroundBox1 {
     position: absolute;
     top: 180px;
     left: 500px;
-    background-color: #ffffff;
+    background-color: #ded8e8;
     width: 680px;
     height: 420px;
     border-radius: 5px;
 }
-.Diarybox{
-    position: absolute;
-    top: 180px;
-    left: 500px;
-    background-color: #ffecf7;
-    width: 680px;
-    height: 620px;
-    border-radius: 5px;
-}
-.scroll-container {
-    height: 580px; /* 원하는 높이로 설정 */
-    overflow-y: auto; /* 수직 스크롤 추가 */
-    overflow-x: hidden; /* 수평 스크롤 숨김 (필요에 따라 변경) */
-}
 .miniroom{
     top: 180px;
     left: 500px;
-    width: 700px;
+    width: 680px;
     height: 420px;
     border-radius: 5px;
 }
@@ -265,28 +215,4 @@ article {
 
 .login.clicked {
     background-color: #ffffff; /* 클릭된 버튼의 배경색 */
-}
-.miniroom-text {
-    font-size: 23px;
-    position: absolute;
-    left: 500px;
-    margin-top: 10px;
-    font-family: 'CustomFont', sans-serif;
-    font-weight: bolder;
-    color: #3d3d3d;
-}
-
-.profile-text {
-    font-size: 23px;
-    position: absolute;
-    left: 250px;
-    margin-top: 10px;
-    font-family: 'CustomFont', sans-serif;
-    font-weight: bolder;
-    color: #3d3d3d;
-
-}
-@font-face {
-    font-family: 'CustomFont';
-    src: url(./font/Ramche.ttf) format('truetype');
 }
