@@ -3,6 +3,7 @@ import Header from "../../components/Todo/Header";
 import TodoEditor from "../../components/Todo/TodoEditor";
 import TodoList from "../../components/Todo/TodoList";
 import "./Todo.css";
+import MainLayoutTodo from "../Main/MainLayoutTodo";
 
 const mockTodo = [
     {
@@ -87,14 +88,15 @@ function Todo() {
     }, []);
 
     return (
-        <div className="App">
+        <MainLayoutTodo>
             <TodoStateContext.Provider value={todo}>
                 <TodoDispatchContext.Provider value={memoizedDispatches}>
                     <TodoEditor />
                     <TodoList />
                 </TodoDispatchContext.Provider>
             </TodoStateContext.Provider>
-        </div>
+        </MainLayoutTodo>
+
     );
 }
 

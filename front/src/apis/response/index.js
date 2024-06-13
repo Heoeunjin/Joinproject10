@@ -1,5 +1,5 @@
 import ResponseDto from './response.dto';
 
-export type {
+export {
     ResponseDto
 }

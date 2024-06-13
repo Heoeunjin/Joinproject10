@@ -6,6 +6,7 @@ import Home from "./Home";
 import New from "./New";
 import Diary from "./Diary";
 import Edit from "./Edit";
+import MainLayout from '../Main/MainLayout'; // MainLayout import
 
 function reducer(state, action) {
     switch (action.type) {
@@ -102,14 +103,14 @@ function DiaryApp() {
                         onDelete,
                     }}
                 >
-                    <div className="App">
+                    <MainLayout>
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/Diary/new" element={<New />} />
                             <Route path="/Diary/:id" element={<Diary />} />
                             <Route path="/Diary/Edit/:id" element={<Edit />} />
                         </Routes>
-                    </div>
+                    </MainLayout>
                 </DiaryDispatchContext.Provider>
             </DiaryStateContext.Provider>
         );

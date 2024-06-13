@@ -1,35 +1,17 @@
-// index.js (src/views/Main/index.js)
+// src/views/Main/MainLayout.jsx
 import React, { useState } from 'react';
-import './index.css';
 import { useNavigate } from 'react-router-dom';
-import Game from './game';
-import GuestBook from './guestBook';
-import Todo from "../TodoPage/Todo";
-import Diary from "../DiaryPage/DiaryApp";
-import { publicUrl } from '../../util';
-import Sidebar from '../../components/Layout/Sidebar';
-import feedImage1 from './images/feed1.jpg'; // 이미지 상대 경로 임포트
-import feedImage2 from './images/feed2.jpg'; // 이미지 상대 경로 임포트
-import feedImage3 from './images/feed3.jpg'; // 이미지 상대 경로 임포트
-import feedImage4 from './images/feed4.jpg'; // 이미지 상대 경로 임포트
+import './index.css';
 
-const App = () => {
+const MainLayout = ({ children }) => {
     const [previousButton, setPreviousButton] = useState(null);
     const [profileImage, setProfileImage] = useState(null);
-    const [showGame, setShowGame] = useState(false);
-    const [showTodo, setShowTodo] = useState(false);
-    const [showDiary, setShowDiary] = useState(false);
-    const [showGuestBook, setShowGuestBook] = useState(false);
     const navigate = useNavigate();
 
     const changeColor = (button, path) => {
         if (previousButton) {
             previousButton.classList.remove('clicked');
         }
-        setShowGame(path === '/game');
-        setShowTodo(path === '/todo');
-        setShowDiary(path === '/Diary');
-        setShowGuestBook(path === '/guestBook');
         navigate(path);
         button.classList.add('clicked');
         setPreviousButton(button);
@@ -50,9 +32,11 @@ const App = () => {
             reader.readAsDataURL(file);
         }
     };
+
     const handleClick2 = () => {
         navigate('/auth/sign-in');
     };
+
     const handleClick = () => {
         navigate('/auth/sign-up');
     };
@@ -61,13 +45,13 @@ const App = () => {
         <section>
             <article>
                 <div className="profile-text">프로필</div>
-                <div className="miniroom-text">미니룸</div>
+                <div className="miniroom-text">감정일기</div>
             </article>
 
             {/* 우측 버튼 */}
             <button className="newBox" onClick={(e) => changeColor(e.target, '/index')}>홈</button>
             <button className="newBox" onClick={(e) => changeColor(e.target, '/todo')}>할일</button>
-            <button className="newBox" onClick={(e) => changeColor(e.target, '/Diary')}>일기</button>
+            <button className="newBox" onClick={(e) => changeColor(e.target, '/diary')}>일기</button>
             <button className="newBox" onClick={(e) => changeColor(e.target, '/game')}>미니미</button>
             <button className="newBox" onClick={(e) => changeColor(e.target, '/messages')}>메세지</button>
             <button className="newBox" onClick={(e) => changeColor(e.target, '/guestBook')}>방명록</button>
@@ -91,37 +75,15 @@ const App = () => {
                 이름: 허은진<br/><br/>
                 이메일: huhej0315@gmail.com
             </div>
-            <div className="feedBox1">
-                <img src={feedImage1} alt="Feed Image" /> {/* 이미지 경로 수정 */}
+            <div className="Diarybox">
+                <div className="scroll-container">
+                    {children}
+                </div>
             </div>
-            <div className="feedBox2">
-                <img src={feedImage2} alt="Feed Image" /> {/* 이미지 경로 수정 */}
-            </div>
-            <div className="feedBox3">
-                <img src={feedImage3} alt="Feed Image" /> {/* 이미지 경로 수정 */}
 
-            </div>
-            <div className="feedBox4">
-                <img src={feedImage4} alt="Feed Image" />
-            </div>
-            <div className="backgroundBox1">
-                <div>
-                    <img className="miniroom"
-                         src={publicUrl + '/resources/img/miniroom.gif'}
-                         alt="miniroom"
-                    />
-                </div> {/* 클래스 이름 수정 */}
-            </div>
-            {/* 방명록 요소 */}
-            {showGuestBook && <GuestBook />}
-            {/* 할일 요소 */}
-            {showTodo && <Todo />}
-            {/* 일기 요소 */}
-            {showDiary && <Diary />}
-            {/* 게임 요소 */}
-            {showGame && <Game />}
+
         </section>
     );
 };
 
-export default App;
+export default MainLayout;
